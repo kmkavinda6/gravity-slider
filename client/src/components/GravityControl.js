@@ -2,6 +2,9 @@ import React, { useState, useRef, useEffect } from 'react';
 import { wsService } from '../services/websocket';
 import { StatusPanel } from './StatusPanel';
 
+// custom styles
+import Styles from './custom_styles.module.css'
+
 // Particle component for visual effects
 const Particle = ({ gravity }) => {
   const [position, setPosition] = useState({
@@ -130,8 +133,9 @@ export const GravityControl = () => {
   }, [isDragging]);
 
   return (
-    <div className="min-h-screen bg-slate-900 flex items-center justify-center p-4">
-      <div className="w-full max-w-3xl bg-slate-800 p-8 rounded-2xl shadow-2xl border-2 border-blue-500/30 relative overflow-hidden">
+    
+    <div className={`${Styles.parent_com} min-h-screen bg-slate-900`}>
+      <div className={`${Styles.child_comp} relative overflow-hidden`}>
         {/* Particle Container */}
         <div className="absolute inset-0 pointer-events-none">
           {particles.map((_, i) => (
@@ -139,7 +143,8 @@ export const GravityControl = () => {
           ))}
         </div>
 
-        <div style={{ }} className="grid grid-cols-3 gap-8 relative z-10">
+        {/* slider content */}
+        <div className={`${Styles.slider_wrapper} grid grid-cols-3 gap-8 relative z-10`}>
           {/* Left Panel - System Status */}
           <StatusPanel
             title="SYSTEM STATUS"

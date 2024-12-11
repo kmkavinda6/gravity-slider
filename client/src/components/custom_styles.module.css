@@ -1,0 +1,9 @@
+.child_comp {
+    height: 100vh;
+}
+
+.slider_wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;   
+}
