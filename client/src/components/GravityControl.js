@@ -139,7 +139,7 @@ export const GravityControl = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-3 gap-8 relative z-10">
+        <div style={{ }} className="grid grid-cols-3 gap-8 relative z-10">
           {/* Left Panel - System Status */}
           <StatusPanel
             title="SYSTEM STATUS"
