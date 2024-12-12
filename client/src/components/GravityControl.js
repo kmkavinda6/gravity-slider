@@ -157,21 +157,47 @@ export const GravityControl = () => {
             <div ref={containerRef}
               className={`${Styles.scroll_bar} h-96 w-24  relative`}>
 
+              {/* markers */}
+              <div style={{
+                width: '30%',
+                height: '3px',
+                position: 'absolute',
+                backgroundColor: '#58a6f9',
+                transform: 'translate(-50%, -50%)',
+                top: '26%',
+                left: '50%',
+                border: '1px solid #58a6f9',
+                borderRadius: '20px'
+              }}></div>
+
+              <div style={{
+                width: '30%',
+                height: '3px',
+                position: 'absolute',
+                backgroundColor: '#58a6f9',
+                transform: 'translate(-50%, -50%)',
+                top: '26%',
+                left: '50%',
+                border: '1px solid #58a6f9',
+                borderRadius: '20px'
+              }}></div>
+
               {/* middle line */}
               <div className={`${Styles.middle_line} absolute left-1/2 top-2 bottom-2 w-1 transform -translate-x-1/2`} />
 
               {/* thumb element */}
               <div
                 ref={leverRef}
+                onTouchStart={handleMouseDown}
                 onMouseDown={handleMouseDown}
                 className={`${Styles.thumb} cursor-pointer shadow-lg flex items-center justify-center`}
                 style={{ top: '0px' }}
               >
-                <div className="w-12 h-1 bg-white/80 rounded-full" />
+                <div style={{ backgroundColor: '#009af9' }} className="w-12 h-1 bg-white/80 rounded-full" />
               </div>
 
               {/* number system */}
-              <div className="absolute -right-16 top-0 bottom-0 flex flex-col justify-between py-2">
+              <div className="absolute -right-14 top-0 bottom-0 flex flex-col justify-between py-2">
                 {['000', '025', '050', '075', '100'].map((mark) => (
                   <div key={mark} className="flex items-center">
                     {/* <div className="w-2 h-0.5 bg-blue-500/50" /> */}
@@ -197,15 +223,8 @@ export const GravityControl = () => {
         <div className={Styles.blur_layer}></div>
 
         {/* video bg */}
-        {/* <video
-          className={Styles.video_background}
-          autoPlay={true}
-          loop={true}
-          controls={false}
-          src='/Background_Loop.0.mov'></video> */}
-
         <ReactPlayer
-          cl  assName={Styles.video_background}
+          className={Styles.video_background}
           loop={true}
           controls={false}
           muted={true}

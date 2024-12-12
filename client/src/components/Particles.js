@@ -104,13 +104,13 @@ export default function Particle() {
 
                             color: {
 
-                                value: "#bae6fd",
+                                value: "#ffffff",
 
                             },
 
                             links: {
 
-                                color: "#e0f2fe",
+                                color: "#ffffff",
 
                                 distance: 150,
 
