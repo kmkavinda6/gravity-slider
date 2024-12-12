@@ -1,77 +1,78 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { wsService } from '../services/websocket';
 import { StatusPanel } from './StatusPanel';
+import ReactPlayer from 'react-player'
 
-// text effect
-import ShuffleText from 'react-shuffle-text';
+// particles effect 
+import Particle from './Particles';
 
 // custom styles
 import Styles from './custom_styles.module.css'
 
 // Particle component for visual effects
-const Particle = ({ gravity }) => {
-  const [position, setPosition] = useState({
-    x: Math.random() * 100,
-    y: Math.random() * 100
-  });
-  const [velocity, setVelocity] = useState({
-    x: (Math.random() - 0.5) * 2,
-    y: (Math.random() - 0.5) * 2
-  });
+// const Particle = ({ gravity }) => {
+//   const [position, setPosition] = useState({
+//     x: Math.random() * 100,
+//     y: Math.random() * 100
+//   });
+//   const [velocity, setVelocity] = useState({
+//     x: (Math.random() - 0.5) * 2,
+//     y: (Math.random() - 0.5) * 2
+//   });
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setPosition(prev => {
-        // Calculate new position based on gravity
-        const gravityEffect = (gravity / 100) * 0.5;
-        let newX = prev.x + velocity.x;
-        let newY = prev.y + velocity.y + gravityEffect;
+//   useEffect(() => {
+//     const interval = setInterval(() => {
+//       setPosition(prev => {
+//         // Calculate new position based on gravity
+//         const gravityEffect = (gravity / 100) * 0.5;
+//         let newX = prev.x + velocity.x;
+//         let newY = prev.y + velocity.y + gravityEffect;
 
-        // Bounce off walls
-        if (newX < 0 || newX > 100) {
-          setVelocity(prev => ({ ...prev, x: -prev.x * 0.8 }));
-          newX = Math.max(0, Math.min(100, newX));
-        }
+//         // Bounce off walls
+//         if (newX < 0 || newX > 100) {
+//           setVelocity(prev => ({ ...prev, x: -prev.x * 0.8 }));
+//           newX = Math.max(0, Math.min(100, newX));
+//         }
 
-        // Floor collision when gravity is high
-        if (newY > 100) {
-          newY = 100;
-          setVelocity(prev => ({ ...prev, y: -prev.y * 0.5 }));
-        }
+//         // Floor collision when gravity is high
+//         if (newY > 100) {
+//           newY = 100;
+//           setVelocity(prev => ({ ...prev, y: -prev.y * 0.5 }));
+//         }
 
-        // Ceiling collision
-        if (newY < 0) {
-          newY = 0;
-          setVelocity(prev => ({ ...prev, y: -prev.y * 0.5 }));
-        }
+//         // Ceiling collision
+//         if (newY < 0) {
+//           newY = 0;
+//           setVelocity(prev => ({ ...prev, y: -prev.y * 0.5 }));
+//         }
 
-        return { x: newX, y: newY };
-      });
+//         return { x: newX, y: newY };
+//       });
 
-      // Add random movement when gravity is low
-      if (gravity < 20) {
-        setVelocity(prev => ({
-          x: prev.x + (Math.random() - 0.5) * 0.2,
-          y: prev.y + (Math.random() - 0.5) * 0.2
-        }));
-      }
-    }, 16);
+//       // Add random movement when gravity is low
+//       if (gravity < 20) {
+//         setVelocity(prev => ({
+//           x: prev.x + (Math.random() - 0.5) * 0.2,
+//           y: prev.y + (Math.random() - 0.5) * 0.2
+//         }));
+//       }
+//     }, 16);
 
-    return () => clearInterval(interval);
-  }, [gravity]);
+//     return () => clearInterval(interval);
+//   }, [gravity]);
 
-  return (
-    <div
-      className="absolute w-2 h-2 rounded-full bg-blue-400/50"
-      style={{
-        left: `${position.x}%`,
-        top: `${position.y}%`,
-        transition: 'box-shadow 0.3s',
-        boxShadow: `0 0 ${(100 - gravity) / 10}px ${(100 - gravity) / 20}px rgba(96, 165, 250, 0.5)`
-      }}
-    />
-  );
-};
+//   return (
+//     <div
+//       className="absolute w-2 h-2 rounded-full bg-blue-400/50"
+//       style={{
+//         left: `${position.x}%`,
+//         top: `${position.y}%`,
+//         transition: 'box-shadow 0.3s',
+//         boxShadow: `0 0 ${(100 - gravity) / 10}px ${(100 - gravity) / 20}px rgba(96, 165, 250, 0.5)`
+//       }}
+//     />
+//   );
+// };
 
 export const GravityControl = () => {
   const [gravity, setGravity] = useState(100);
@@ -79,7 +80,7 @@ export const GravityControl = () => {
   const [isDragging, setIsDragging] = useState(false);
   const leverRef = useRef(null);
   const containerRef = useRef(null);
-  const particles = Array(15).fill(null);
+  // const particles = Array(15).fill(null);
 
   useEffect(() => {
     wsService.connect();
@@ -141,15 +142,14 @@ export const GravityControl = () => {
       <div className={`${Styles.child_comp} relative overflow-hidden`}>
         {/* Particle Container */}
         <div className="absolute inset-0 pointer-events-none">
-          {particles.map((_, i) => (
+          {/* {particles.map((_, i) => (
             <Particle key={i} gravity={gravity} />
-          ))}
+          ))} */}
         </div>
 
         <div className={Styles.slicer}>
           <div className={Styles.partition_1}>
             {/* title */}
-            <ShuffleText content="Zhuangbility" />
             <h1 className={`${Styles.heading} text-blue-400`}>GRAVITY CONTROL</h1>
           </div>
 
@@ -189,6 +189,31 @@ export const GravityControl = () => {
             </div>
           </div>
         </div>
+
+        {/* particles layer */}
+        <Particle className={Styles.particle_layer} />
+
+        {/* blur layer */}
+        <div className={Styles.blur_layer}></div>
+
+        {/* video bg */}
+        {/* <video
+          className={Styles.video_background}
+          autoPlay={true}
+          loop={true}
+          controls={false}
+          src='/Background_Loop.0.mov'></video> */}
+
+        <ReactPlayer
+          cl  assName={Styles.video_background}
+          loop={true}
+          controls={false}
+          muted={true}
+          playing={true}
+          style={{
+            objectFit: 'fill'
+          }}
+          url='/Background_Loop.0.mov'></ReactPlayer>
 
         {/* previous details panels */}
         {/* <div className={`${Styles.slider_wrapper} grid grid-cols-3 relative z-10`}>
