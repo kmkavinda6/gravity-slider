@@ -3,8 +3,20 @@ import { wsService } from '../services/websocket';
 import { StatusPanel } from './StatusPanel';
 import ReactPlayer from 'react-player'
 
+// text shuffling aniamtion 
+import Scramble from 'react-scramble'
+
 // particles effect 
 import Particle from './Particles';
+
+// markers
+import Markers from './UI/markers';
+
+// number system
+import NumberSystem from './UI/NumberSystem';
+
+// overlays
+import Overlay from './UI/Overlay';
 
 // custom styles
 import Styles from './custom_styles.module.css'
@@ -18,6 +30,10 @@ export const GravityControl = () => {
   const leverRef = useRef(null);
   const containerRef = useRef(null);
   // const particles = Array(15).fill(null);
+
+  setInterval(() => {
+    console.log("lolz")
+  }, 2000);
 
   useEffect(() => {
     wsService.connect();
@@ -94,38 +110,37 @@ export const GravityControl = () => {
 
   return (
     <div className={`${Styles.parent_com} min-h-screen`}>
+      {/* overlay messages */}
+      {/* <Overlay
+        message="Start the Program"
+        display={true} /> */}
+
+      {/* <Overlay
+        message="End of the Program"
+        display={true} /> */}
+
+      {/* real time particles */}
       <ParticleComponent />
+
+      {/* outer border */}
+      <div className={Styles.outer_border}></div>
+
       <div className={`${Styles.child_comp} relative overflow-hidden`}>
+        {/* slicer */}
         <div className={Styles.slicer}>
           <div className={Styles.partition_1}>
             <h1 className={`${Styles.heading} text-blue-400`}>GRAVITY CONTROL</h1>
           </div>
+
           <div className={Styles.partition_2}>
             <div ref={containerRef} className={`${Styles.scroll_bar} h-96 w-24  relative`}>
               {/* markers */}
-              <div style={{
-                width: '30%',
-                height: '3px',
-                position: 'absolute',
-                backgroundColor: '#58a6f9',
-                transform: 'translate(-50%, -50%)',
-                top: '26%',
-                left: '50%',
-                border: '1px solid #58a6f9',
-                borderRadius: '20px'
-              }}></div>
-              <div style={{
-                width: '30%',
-                height: '3px',
-                position: 'absolute',
-                backgroundColor: '#58a6f9',
-                transform: 'translate(-50%, -50%)',
-                top: '26%',
-                left: '50%',
-                border: '1px solid #58a6f9',
-                borderRadius: '20px'
-              }}></div>
+              <Markers />
+
+              {/* middle line */}
               <div className={`${Styles.middle_line} absolute left-1/2 top-2 bottom-2 w-1 transform -translate-x-1/2`} />
+
+              {/* scroll bar */}
               <div
                 ref={leverRef}
                 onTouchStart={handleTouchStart}
@@ -133,24 +148,27 @@ export const GravityControl = () => {
                 className={`${Styles.thumb} cursor-pointer shadow-lg flex items-center justify-center`}
                 style={{ top: '0px' }}
               >
-                <div style={{ backgroundColor: '#009af9' }} className="w-12 h-1 bg-white/80 rounded-full" />
+                <div className={Styles.thumb_line} />
               </div>
-              <div className="absolute -right-14 top-0 bottom-0 flex flex-col justify-between py-2">
+
+              {/* number systems /side panel */}
+              <NumberSystem />
+
+              {/* <div className="absolute -right-14 top-0 bottom-0 flex flex-col justify-between py-2">
                 {['000', '025', '050', '075', '100'].map((mark) => (
                   <div key={mark} className="flex items-center">
                     <span className={`${Styles.number_system}`}>{mark}</span>
                   </div>
                 ))}
-              </div>
-            </div>
-          </div>
-          <div className={Styles.partition_3}>
-            <div className={Styles.g_value}>
-              <span> G: {gravity}% </span>
+              </div> */}
             </div>
           </div>
         </div>
+
+        {/* blur layer */}
         <div className={Styles.blur_layer}></div>
+
+        {/* video background */}
         <ReactPlayer
           className={Styles.video_background}
           loop={true}
@@ -158,7 +176,7 @@ export const GravityControl = () => {
           muted={true}
           playing={true}
           style={{ objectFit: 'fill' }}
-          url='/Background_Loop.0.mov'></ReactPlayer>
+          url='/Background.mp4'></ReactPlayer>
       </div>
     </div>
   );
