@@ -16,7 +16,7 @@ const NumberSystem = () => {
                 color: 'white',
                 fontSize: '80px',
                 bottom: -40,
-                right: -5
+                right: 0
             }}>-</span>
         </>
     )

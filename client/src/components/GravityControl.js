@@ -15,6 +15,9 @@ import Markers from './UI/markers';
 // number system
 import NumberSystem from './UI/NumberSystem';
 
+// overlays
+import Overlay from './UI/Overlay';
+
 // custom styles
 import Styles from './custom_styles.module.css'
 
@@ -107,6 +110,15 @@ export const GravityControl = () => {
 
   return (
     <div className={`${Styles.parent_com} min-h-screen`}>
+      {/* overlay messages */}
+      {/* <Overlay
+        message="Start the Program"
+        display={true} /> */}
+
+      {/* <Overlay
+        message="End of the Program"
+        display={true} /> */}
+
       {/* real time particles */}
       <ParticleComponent />
 
@@ -117,22 +129,6 @@ export const GravityControl = () => {
         {/* slicer */}
         <div className={Styles.slicer}>
           <div className={Styles.partition_1}>
-            {/* <Scramble
-              className={`${Styles.heading} text-blue-400`}
-              autoStart={true}
-              text="GRAVITY CONTROL"
-              steps={[
-                {
-                  roll: 10,
-                  action: '+',
-                  type: 'all',
-                },
-                {
-                  action: '-',
-                  type: 'forward',
-                },
-              ]}
-            /> */}
             <h1 className={`${Styles.heading} text-blue-400`}>GRAVITY CONTROL</h1>
           </div>
 
@@ -157,7 +153,7 @@ export const GravityControl = () => {
 
               {/* number systems /side panel */}
               <NumberSystem />
-              
+
               {/* <div className="absolute -right-14 top-0 bottom-0 flex flex-col justify-between py-2">
                 {['000', '025', '050', '075', '100'].map((mark) => (
                   <div key={mark} className="flex items-center">
@@ -167,12 +163,6 @@ export const GravityControl = () => {
               </div> */}
             </div>
           </div>
-
-          {/* <div className={Styles.partition_3}>
-            <div className={Styles.g_value}>
-              <span> G: {gravity}% </span>
-            </div>
-          </div> */}
         </div>
 
         {/* blur layer */}
