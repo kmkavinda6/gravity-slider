@@ -158,29 +158,7 @@ export const GravityControl = () => {
               className={`${Styles.scroll_bar} h-96 w-24  relative`}>
 
               {/* markers */}
-              <div style={{
-                width: '30%',
-                height: '3px',
-                position: 'absolute',
-                backgroundColor: '#58a6f9',
-                transform: 'translate(-50%, -50%)',
-                top: '26%',
-                left: '50%',
-                border: '1px solid #58a6f9',
-                borderRadius: '20px'
-              }}></div>
-
-              <div style={{
-                width: '30%',
-                height: '3px',
-                position: 'absolute',
-                backgroundColor: '#58a6f9',
-                transform: 'translate(-50%, -50%)',
-                top: '26%',
-                left: '50%',
-                border: '1px solid #58a6f9',
-                borderRadius: '20px'
-              }}></div>
+              
 
               {/* middle line */}
               <div className={`${Styles.middle_line} absolute left-1/2 top-2 bottom-2 w-1 transform -translate-x-1/2`} />
@@ -232,7 +210,7 @@ export const GravityControl = () => {
           style={{
             objectFit: 'fill'
           }}
-          url='/Background_Loop.0.mov'></ReactPlayer>
+          url='/Background_Loop.0.mp4'></ReactPlayer>
 
         {/* previous details panels */}
         {/* <div className={`${Styles.slider_wrapper} grid grid-cols-3 relative z-10`}>

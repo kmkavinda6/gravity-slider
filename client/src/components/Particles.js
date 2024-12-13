@@ -62,7 +62,7 @@ export default function Particle() {
 
                                 onClick: {
 
-                                    enable: true,
+                                    enable: false,
 
                                     mode: "push",
 
@@ -70,7 +70,7 @@ export default function Particle() {
 
                                 onHover: {
 
-                                    enable: true,
+                                    enable: false,
 
                                     mode: "repulse",
 
@@ -158,7 +158,7 @@ export default function Particle() {
 
                             opacity: {
 
-                                value: 0.5,
+                                value: .6,
 
                             },
 
@@ -176,7 +176,7 @@ export default function Particle() {
 
                         },
 
-                        detectRetina: true,
+                        detectRetina: false,
 
                     }}
 
