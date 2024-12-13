@@ -1,0 +1,53 @@
+.marker {
+    position: absolute;
+    transform: translateX(-50%);
+    left: 50%;
+    z-index: 0;
+    height: 3px;
+    background-color: #58a6f9;
+}
+
+.marker_1 {
+    top: .2%;
+    width: 33%;
+}
+
+.marker_1h {
+    top: 12.5%;
+    width: 20%;
+}
+
+.marker_2 {
+    top: 25%;
+    width: 33%;
+}
+
+.marker_2h {
+    top: 37.5%;
+    width: 20%;
+}
+
+.marker_3 {
+    top: 50%;
+    width: 33%;
+}
+
+.marker_3h {
+    top: 62.5%;
+    width: 20%;
+}
+
+.marker_4 {
+    top: 75%;
+    width: 33%;
+}
+
+.marker_4h {
+    top: 87.5%;
+    width: 20%;
+}
+
+.marker_5 {
+    top: 99.5%;
+    width: 33%;
+}

@@ -9,6 +9,10 @@
     src: url(/public/fonts/DS-DIGII.TTF);
 }
 
+@font-face {
+    font-family: "Ethnocentric-Rg";
+    src: url(/public/fonts/Ethnocentric-Rg.otf);
+}
 /* end of font faces */
 
 .video_background {
@@ -19,6 +23,7 @@
     height: 100% !important;
     object-fit: fill !important;
     opacity: 1 !important;
+    left: 0 !important;
 }
 
 .blur_layer {
@@ -47,7 +52,7 @@
     background-color: rgb(0, 0, 30, .45);
     left: 0;
     top: 0;
-    width: 100vw;
+    width: 99vw;
     height: 100vh;
 }
 
@@ -62,9 +67,9 @@
 }
 
 .heading {
-    font-size: 50px;
+    font-size: 60px;
     text-transform: uppercase;
-    font-family: 'DS-DIGI-B';
+    font-family: 'Ethnocentric-Rg';
     color: #58a6f9;
 }
 
@@ -80,9 +85,11 @@
 
 .thumb {
     position: absolute;
-    height: 100px;
+    height: 65px;
     width: 90%;
-    border-radius: 20px;
+    transform: translateX(-50%);
+    left: 50%;
+    border-radius: 8px;
     background-color: #3c0eb8;
 }
 
@@ -97,28 +104,23 @@
 }
 
 .middle_line {
-    width: 3px !important;
+    width: 1px !important;
     background-color: #58a6f9;
     border-radius: 20px;
     /* animation: colorChange 2s ease-in-out infinite; */
 }
 
-/* @keyframes colorChange {
-    0% { background-color: rgb(0, 17, 100); }
-    50%, 100% { background-color: rgb(208, 0, 255); }
-} */
-
 .scroll_bar {
     position: relative;
-    border: 1px solid green;
+    /* border: 1px solid green; */
     width: 20%;
-    height: 95%;
+    height: 96%;
     background-color: none !important;
 }
 
 .slicer .partition_3 {
     display: none !important;
-    height: 10vh;
+    height: 0vh;
     background-color: none;
     /* border: 3px solid lightseagreen; */
     display: flex;
