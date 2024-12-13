@@ -12,6 +12,9 @@ import Particle from './Particles';
 // markers
 import Markers from './UI/markers';
 
+// number system
+import NumberSystem from './UI/NumberSystem';
+
 // custom styles
 import Styles from './custom_styles.module.css'
 
@@ -153,7 +156,7 @@ export const GravityControl = () => {
               </div>
 
               {/* number systems /side panel */}
-              
+              <NumberSystem />
               
               {/* <div className="absolute -right-14 top-0 bottom-0 flex flex-col justify-between py-2">
                 {['000', '025', '050', '075', '100'].map((mark) => (

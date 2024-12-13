@@ -5,7 +5,8 @@
     left: 50%;
     z-index: 0;
     height: 3px;
-    background-color: #63c7f9;
+    /* background-color: #63c7f9; */
+    background-color: white;
 }
 
 .marker_1 {
