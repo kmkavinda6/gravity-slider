@@ -9,70 +9,7 @@ import Particle from './Particles';
 // custom styles
 import Styles from './custom_styles.module.css'
 
-// Particle component for visual effects
-// const Particle = ({ gravity }) => {
-//   const [position, setPosition] = useState({
-//     x: Math.random() * 100,
-//     y: Math.random() * 100
-//   });
-//   const [velocity, setVelocity] = useState({
-//     x: (Math.random() - 0.5) * 2,
-//     y: (Math.random() - 0.5) * 2
-//   });
-
-//   useEffect(() => {
-//     const interval = setInterval(() => {
-//       setPosition(prev => {
-//         // Calculate new position based on gravity
-//         const gravityEffect = (gravity / 100) * 0.5;
-//         let newX = prev.x + velocity.x;
-//         let newY = prev.y + velocity.y + gravityEffect;
-
-//         // Bounce off walls
-//         if (newX < 0 || newX > 100) {
-//           setVelocity(prev => ({ ...prev, x: -prev.x * 0.8 }));
-//           newX = Math.max(0, Math.min(100, newX));
-//         }
-
-//         // Floor collision when gravity is high
-//         if (newY > 100) {
-//           newY = 100;
-//           setVelocity(prev => ({ ...prev, y: -prev.y * 0.5 }));
-//         }
-
-//         // Ceiling collision
-//         if (newY < 0) {
-//           newY = 0;
-//           setVelocity(prev => ({ ...prev, y: -prev.y * 0.5 }));
-//         }
-
-//         return { x: newX, y: newY };
-//       });
-
-//       // Add random movement when gravity is low
-//       if (gravity < 20) {
-//         setVelocity(prev => ({
-//           x: prev.x + (Math.random() - 0.5) * 0.2,
-//           y: prev.y + (Math.random() - 0.5) * 0.2
-//         }));
-//       }
-//     }, 16);
-
-//     return () => clearInterval(interval);
-//   }, [gravity]);
-
-//   return (
-//     <div
-//       className="absolute w-2 h-2 rounded-full bg-blue-400/50"
-//       style={{
-//         left: `${position.x}%`,
-//         top: `${position.y}%`,
-//         transition: 'box-shadow 0.3s',
-//         boxShadow: `0 0 ${(100 - gravity) / 10}px ${(100 - gravity) / 20}px rgba(96, 165, 250, 0.5)`
-//       }}
-//     />
-//   );
-// };
+const ParticleComponent = () => <Particle className={Styles.particle_layer} />;
 
 export const GravityControl = () => {
   const [gravity, setGravity] = useState(100);
@@ -127,131 +64,101 @@ export const GravityControl = () => {
     setIsDragging(false);
   };
 
+  const handleTouchStart = (e) => {
+    setIsDragging(true);
+    e.preventDefault();
+  };
+
+  const handleTouchMove = (e) => {
+    if (isDragging) {
+      updateLeverPosition(e.touches[0].clientY);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+  };
+
   useEffect(() => {
     document.addEventListener('mousemove', handleMouseMove);
     document.addEventListener('mouseup', handleMouseUp);
+    document.addEventListener('touchmove', handleTouchMove);
+    document.addEventListener('touchend', handleTouchEnd);
     return () => {
       document.removeEventListener('mousemove', handleMouseMove);
       document.removeEventListener('mouseup', handleMouseUp);
+      document.removeEventListener('touchmove', handleTouchMove);
+      document.removeEventListener('touchend', handleTouchEnd);
     };
   }, [isDragging]);
 
   return (
-
     <div className={`${Styles.parent_com} min-h-screen`}>
+      <ParticleComponent />
       <div className={`${Styles.child_comp} relative overflow-hidden`}>
-        {/* Particle Container */}
-        <div className="absolute inset-0 pointer-events-none">
-          {/* {particles.map((_, i) => (
-            <Particle key={i} gravity={gravity} />
-          ))} */}
-        </div>
-
         <div className={Styles.slicer}>
           <div className={Styles.partition_1}>
-            {/* title */}
             <h1 className={`${Styles.heading} text-blue-400`}>GRAVITY CONTROL</h1>
           </div>
-
           <div className={Styles.partition_2}>
-            <div ref={containerRef}
-              className={`${Styles.scroll_bar} h-96 w-24  relative`}>
-
+            <div ref={containerRef} className={`${Styles.scroll_bar} h-96 w-24  relative`}>
               {/* markers */}
-              
-
-              {/* middle line */}
+              <div style={{
+                width: '30%',
+                height: '3px',
+                position: 'absolute',
+                backgroundColor: '#58a6f9',
+                transform: 'translate(-50%, -50%)',
+                top: '26%',
+                left: '50%',
+                border: '1px solid #58a6f9',
+                borderRadius: '20px'
+              }}></div>
+              <div style={{
+                width: '30%',
+                height: '3px',
+                position: 'absolute',
+                backgroundColor: '#58a6f9',
+                transform: 'translate(-50%, -50%)',
+                top: '26%',
+                left: '50%',
+                border: '1px solid #58a6f9',
+                borderRadius: '20px'
+              }}></div>
               <div className={`${Styles.middle_line} absolute left-1/2 top-2 bottom-2 w-1 transform -translate-x-1/2`} />
-
-              {/* thumb element */}
               <div
                 ref={leverRef}
-                onTouchStart={handleMouseDown}
+                onTouchStart={handleTouchStart}
                 onMouseDown={handleMouseDown}
                 className={`${Styles.thumb} cursor-pointer shadow-lg flex items-center justify-center`}
                 style={{ top: '0px' }}
               >
                 <div style={{ backgroundColor: '#009af9' }} className="w-12 h-1 bg-white/80 rounded-full" />
               </div>
-
-              {/* number system */}
               <div className="absolute -right-14 top-0 bottom-0 flex flex-col justify-between py-2">
                 {['000', '025', '050', '075', '100'].map((mark) => (
                   <div key={mark} className="flex items-center">
-                    {/* <div className="w-2 h-0.5 bg-blue-500/50" /> */}
                     <span className={`${Styles.number_system}`}>{mark}</span>
                   </div>
                 ))}
               </div>
             </div>
           </div>
-
           <div className={Styles.partition_3}>
-            {/* value indicator */}
             <div className={Styles.g_value}>
               <span> G: {gravity}% </span>
             </div>
           </div>
         </div>
-
-        {/* particles layer */}
-        <Particle className={Styles.particle_layer} />
-
-        {/* blur layer */}
         <div className={Styles.blur_layer}></div>
-
-        {/* video bg */}
         <ReactPlayer
           className={Styles.video_background}
           loop={true}
           controls={false}
           muted={true}
           playing={true}
-          style={{
-            objectFit: 'fill'
-          }}
-          url='/Background_Loop.0.mp4'></ReactPlayer>
-
-        {/* previous details panels */}
-        {/* <div className={`${Styles.slider_wrapper} grid grid-cols-3 relative z-10`}>
-          <StatusPanel title="SYSTEM STATUS"
-            items={[
-              {
-                label: "Power",
-                value: "ONLINE",
-                color: "text-green-400"
-              },
-              {
-                label: "OSC Link",
-                value: connected ? "CONNECTED" : "STANDBY",
-                color: connected ? "text-green-400" : "text-yellow-400"
-              },
-              {
-                label: "Artificial Gravity",
-                value: gravity === 0 ? "DISABLED" : "ENABLED",
-                color: gravity === 0 ? "text-red-400" : "text-green-400"
-              }
-            ]}
-          />
-
-          <StatusPanel
-            title="TELEMETRY"
-            items={[
-              {
-                label: "Room Pressure",
-                value: "1.013 atm"
-              },
-              {
-                label: "Particle Behavior",
-                value: gravity === 0 ? "FLOATING" : "FALLING"
-              },
-              {
-                label: "Field Strength",
-                value: `${gravity / 100} G`
-              }
-            ]}
-          />
-        </div> */}
+          style={{ objectFit: 'fill' }}
+          url='/Background_Loop.0.mov'></ReactPlayer>
       </div>
     </div>
   );
