@@ -1,10 +1,11 @@
 .marker {
+    border-radius: 20px;
     position: absolute;
     transform: translateX(-50%);
     left: 50%;
     z-index: 0;
     height: 3px;
-    background-color: #58a6f9;
+    background-color: #63c7f9;
 }
 
 .marker_1 {

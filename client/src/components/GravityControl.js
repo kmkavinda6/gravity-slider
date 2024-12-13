@@ -107,11 +107,14 @@ export const GravityControl = () => {
       {/* real time particles */}
       <ParticleComponent />
 
+      {/* outer border */}
+      <div className={Styles.outer_border}></div>
+
       <div className={`${Styles.child_comp} relative overflow-hidden`}>
         {/* slicer */}
         <div className={Styles.slicer}>
           <div className={Styles.partition_1}>
-            <Scramble
+            {/* <Scramble
               className={`${Styles.heading} text-blue-400`}
               autoStart={true}
               text="GRAVITY CONTROL"
@@ -126,8 +129,8 @@ export const GravityControl = () => {
                   type: 'forward',
                 },
               ]}
-            />
-            {/* <h1 className={`${Styles.heading} text-blue-400`}>GRAVITY CONTROL</h1> */}
+            /> */}
+            <h1 className={`${Styles.heading} text-blue-400`}>GRAVITY CONTROL</h1>
           </div>
 
           <div className={Styles.partition_2}>
@@ -146,17 +149,19 @@ export const GravityControl = () => {
                 className={`${Styles.thumb} cursor-pointer shadow-lg flex items-center justify-center`}
                 style={{ top: '0px' }}
               >
-                <div style={{ backgroundColor: '#009af9' }} className="w-12 h-1 bg-white/80 rounded-full" />
+                <div className={Styles.thumb_line} />
               </div>
 
               {/* number systems /side panel */}
-              <div className="absolute -right-14 top-0 bottom-0 flex flex-col justify-between py-2">
+              
+              
+              {/* <div className="absolute -right-14 top-0 bottom-0 flex flex-col justify-between py-2">
                 {['000', '025', '050', '075', '100'].map((mark) => (
                   <div key={mark} className="flex items-center">
                     <span className={`${Styles.number_system}`}>{mark}</span>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
           </div>
 
@@ -178,7 +183,7 @@ export const GravityControl = () => {
           muted={true}
           playing={true}
           style={{ objectFit: 'fill' }}
-          url='/Background_Loop.0.mp4'></ReactPlayer>
+          url='/Background.mp4'></ReactPlayer>
       </div>
     </div>
   );
