@@ -29,12 +29,6 @@ export const GravityControl = () => {
   const [isDragging, setIsDragging] = useState(false);
   const leverRef = useRef(null);
   const containerRef = useRef(null);
-  // const particles = Array(15).fill(null);
-
-  setInterval(() => {
-    console.log("lolz")
-  }, 2000);
-
   useEffect(() => {
     wsService.connect();
 
