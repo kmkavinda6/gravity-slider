@@ -57,30 +57,30 @@ export const GravityControl = () => {
     const percentage = Math.round((newY / (containerRect.height - leverHeight)) * 100);
 
     const sections = [
-      { start: -1, end: 6, value: 0 },
-      { start: 5, end: 11, value: 5 },
-      { start: 10, end: 16, value: 10 },
-      { start: 15, end: 21, value: 15 },
+      { start: -1, end: 6, value: 50 },
+      { start: 5, end: 11, value: 45 },
+      { start: 10, end: 16, value: 40 },
+      { start: 15, end: 21, value: 35 },
 
-      { start: 20, end: 26, value: 20 },
+      { start: 20, end: 26, value: 30 },
       { start: 25, end: 31, value: 25 },
-      { start: 30, end: 36, value: 30 },
-      { start: 35, end: 41, value: 35 },
+      { start: 30, end: 36, value: 20 },
+      { start: 35, end: 41, value: 15 },
 
-      { start: 40, end: 46, value: 40 },
-      { start: 45, end: 51, value: 45 },
-      { start: 50, end: 56, value: 50 },
-      { start: 55, end: 61, value: 55 },
+      { start: 40, end: 46, value: 10 },
+      { start: 45, end: 51, value: 5 },
+      { start: 50, end: 56, value: 0 },
+      { start: 55, end: 61, value: -5 },
 
-      { start: 60, end: 66, value: 60 },
-      { start: 65, end: 71, value: 65 },
-      { start: 70, end: 76, value: 70 },
-      { start: 75, end: 81, value: 75 },
+      { start: 60, end: 66, value: -10 },
+      { start: 65, end: 71, value: -15 },
+      { start: 70, end: 76, value: -20 },
+      { start: 75, end: 81, value: -25 },
 
-      { start: 80, end: 86, value: 80 },
-      { start: 85, end: 91, value: 85 },
-      { start: 90, end: 96, value: 90 },
-      { start: 95, end: 101, value: 95 },
+      { start: 80, end: 86, value: -30 },
+      { start: 85, end: 91, value: -35 },
+      { start: 90, end: 96, value: -40 },
+      { start: 95, end: 101, value: -45 },
     ]
 
     for (const { start, end, value } of sections) {
