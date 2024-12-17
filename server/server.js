@@ -18,7 +18,7 @@ app.use(cors());
 app.use(express.json());
 
 // Create OSC client for Unreal Engine communication
-const oscClient = new osc.Client('192.168.1.2', 7000);
+const oscClient = new osc.Client('192.168.8.42', 7000);
 
 // Store current system state
 const state = {
