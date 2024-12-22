@@ -1,6 +1,6 @@
 // server/server.js
 const express = require('express');
-const cors = require('cors');
+// const cors = require('cors');
 const osc = require('node-osc');
 const WebSocket = require('ws');
 const http = require('http');
@@ -14,11 +14,11 @@ const PORT = 3001;
 const wss = new WebSocket.Server({ server });
 
 // Middleware
-app.use(cors());
-app.use(express.json());
+// app.use(cors());
+// app.use(express.json());
 
 // Create OSC client for Unreal Engine communication
-const oscClient = new osc.Client('192.168.8.42', 7000);
+const oscClient = new osc.Client('192.168.8.23', 7000);
 
 // Store current system state
 const state = {

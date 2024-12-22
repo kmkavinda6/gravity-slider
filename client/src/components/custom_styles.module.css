@@ -17,10 +17,10 @@
 
 .outer_border {
     position: fixed;
-    width: 98.9vw;
+    width: 100vw;
     height: 100vh;
     border: 2px solid #63c7f9;
-    border-right-width: 3px;
+    border-right-width: .5px !important;
     border-radius: 20px;
 }
 
@@ -28,7 +28,7 @@
     border-radius: 20px !important;
     position: absolute !important;
     z-index: -1 !important;
-    width: 100% !important;
+    width: 100vw !important;
     height: 100% !important;
     object-fit: fill !important;
     opacity: 1 !important;
@@ -41,7 +41,7 @@
     /* border: 1px solid red; */
     z-index: 2;
     position: absolute;
-    width: 100%;
+    width: 120%;
     height: 100%;
     backdrop-filter: blur(15px);
 }
@@ -123,9 +123,10 @@
 }
 
 .middle_line {
-    width: 1px !important;
+
+    width: 1.2px !important;
     /* backgrond-color: #63c7f9; */
-    background-color: white;
+    background-color: white !important;
     border-radius: 20px;
     /* animation: colorChange 2s ease-in-out infinite; */
 }
